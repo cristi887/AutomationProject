@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import javax.swing.*;
 import java.io.File;
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class FindWebElemnts {
 
