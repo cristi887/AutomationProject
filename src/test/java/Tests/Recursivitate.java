@@ -16,15 +16,14 @@ public class Recursivitate {
 
     @Test
     public void parcurgereListe(){
-
         //dechidem un browser de Chrome
         driver = new ChromeDriver();
 
-        // accesam o pagina web
-        driver.get("https://demoqa.com/sortable");
-
         // facem browserul in modul maximize
         driver.manage().window().maximize();
+
+        // accesam o pagina web
+        driver.get("https://demoqa.com/sortable");
 
         List<WebElement> list = driver.findElements(By.xpath("//div[@id='demo-tabpane-list']//div[@class='list-group-item list-group-item-action']"));
 
@@ -32,11 +31,9 @@ public class Recursivitate {
 
         for (int i=0; i<= list.size()-1;i++){
 
-            WebElement webElement=list.get(i);
+            WebElement webElement = list.get(i);
             WebElement urmatorulElement = list.get(i++);
-
             System.out.println("Numarul elemntului este: "+webElement.getText());
-
             actions.clickAndHold(webElement)
                     .moveToElement(urmatorulElement)
                     .release()

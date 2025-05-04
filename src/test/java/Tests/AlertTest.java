@@ -2,11 +2,14 @@ package Tests;
 
 import HelperMethods.AlertMethods;
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavascriptHelpers;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.HomePage;
 
 import java.time.Duration;
 
@@ -14,6 +17,9 @@ public class AlertTest {
     public WebDriver driver;
     public ElementsMethods elementsMethods;
     public AlertMethods alertMethods;
+    public JavascriptHelpers js;
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
     public void automationMethod (){
@@ -33,21 +39,27 @@ public class AlertTest {
         //
         elementsMethods = new ElementsMethods(driver);
         alertMethods = new AlertMethods(driver);
+        js = new JavascriptHelpers(driver);
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
 
         // facem un scroll
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        //JavascriptExecutor js = (JavascriptExecutor) driver;
         // scroll down till the bottom of the page
-        js.executeScript("window.scrollBy(0,400)");
+       // js.executeScript("window.scrollBy(0,400)");
+//        js.scrollDown(400);
+//
+//        // declaram un element
+//        WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
+//        // alertFrameWindowElement.click();
+//        elementsMethods.clickOnElements(alertFrameWindowElement);
+        homePage.goToDesiredMenu("Alerts, Frame & Windows");
 
         // declaram un element
-        WebElement alertFrameWindowElement = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        // alertFrameWindowElement.click();
-        elementsMethods.clickOnElements(alertFrameWindowElement);
-
-        // declaram un element
-        WebElement alertElement = driver.findElement(By.xpath("//span[text()='Alerts']"));
-        //alertElement.click();
-        elementsMethods.clickOnElements(alertElement);
+//        WebElement alertElement = driver.findElement(By.xpath("//span[text()='Alerts']"));
+//        //alertElement.click();
+//        elementsMethods.clickOnElements(alertElement);
+        commonPage.goToDesiredSubMenu("Alerts");
 
         //primul alert
         WebElement alertOkElement = driver.findElement(By.id("alertButton"));

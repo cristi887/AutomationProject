@@ -1,15 +1,23 @@
 package Tests;
 
+import HelperMethods.ElementsMethods;
+import HelperMethods.JavascriptHelpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.HomePage;
 
 public class WebTableTest {
 
     public WebDriver driver;
+    public ElementsMethods elementsMethods;
+    public JavascriptHelpers js;
+    public HomePage homePage;
+    public CommonPage commonPage;
 
     @Test
     public void automationMethod (){
@@ -17,24 +25,32 @@ public class WebTableTest {
         //dechidem un browser de Chrome
         driver = new ChromeDriver();
 
-        // accesam o pagina web
-        driver.get("https://demoqa.com/");
-
         // facem browserul in modul maximize
         driver.manage().window().maximize();
 
+        // accesam o pagina web
+        driver.get("https://demoqa.com/");
+
+        elementsMethods = new ElementsMethods(driver);
+        js = new JavascriptHelpers(driver);
+        homePage = new HomePage(driver);
+        commonPage = new CommonPage(driver);
+
         // facem un scroll
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        // scroll down till the bottom of the page
-        js.executeScript("window.scrollBy(0,400)");
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        // scroll down till the bottom of the page
+//        js.executeScript("window.scrollBy(0,400)");
+        //js.scrollDown(400);
 
         // declaram un element
-        WebElement ElementsField = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        ElementsField.click();
+//        WebElement ElementsField = driver.findElement(By.xpath("//h5[text()='Elements']"));
+//        ElementsField.click();
+        homePage.goToDesiredMenu("Elements");
 
         // declaram un element
-        WebElement WebTableField = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        WebTableField.click();
+//        WebElement WebTableField = driver.findElement(By.xpath("//span[text()='Web Tables']"));
+//        WebTableField.click();
+        commonPage.goToDesiredSubMenu("Web Tables");
 
         WebElement AddButtonField = driver.findElement(By.id("addNewRecordButton"));
         AddButtonField.click();
